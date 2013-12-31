@@ -59,16 +59,16 @@ Client UI Features
 
 Server Features
 ---------------
-*Port: HTTP/S Server for UI
+* Port: HTTP/S Server for UI
   * See above, but supports REST API for Messages
   * Policy discovery.
-*Port: SMTP Server for Mail
+* Port: SMTP Server for Mail
   * Mail is rejected if not S/MIME compliant.
-*Port: LDAP Server
+* Port: LDAP Server
   * Used to serve certificate discovery requests for addresses hosted my ccmed server.
   * Optionally shares meta data about the user.
-*Port: DNS Server
-*Port: IMAP  (future)
+* Port: DNS Server
+* Port: IMAP  (future)
 
 Collections
 -----------
