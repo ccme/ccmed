@@ -123,6 +123,10 @@ Server Features
 * Port: DNS server
 * Port: IMAP  (future)
 
+Document/Message Storage
+------------------------
+* http://docs.mongodb.org/manual/core/gridfs/
+
 Collections
 -----------
 * address
