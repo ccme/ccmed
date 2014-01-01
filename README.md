@@ -127,6 +127,9 @@ Document/Message Storage
 ------------------------
 * http://docs.mongodb.org/manual/core/gridfs/
 * https://github.com/CollectionFS/Meteor-CollectionFS
+* MIME handling:
+  * [smime-node](https://github.com/kachok/smime-node/blob/master/lib/smime-node.js) Node.js wrapper for OpenSSL S/MIME commands
+  * [mailparser](https://github.com/andris9/mailparser) Decode mime formatted e-mails, but currently does not support signatures.
 
 Collections
 -----------
