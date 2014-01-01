@@ -126,6 +126,7 @@ Server Features
 Document/Message Storage
 ------------------------
 * http://docs.mongodb.org/manual/core/gridfs/
+* https://github.com/CollectionFS/Meteor-CollectionFS
 
 Collections
 -----------
