@@ -74,7 +74,7 @@ Client UI Features
   * Message forwarding:
     * If a message is fwd to an address on the same server:
       * it is simply added to their inbox and if encrypted, the symmetric key is encrypted for the receiver.
-    * If a message is fwd to and address on another ccmed server:
+    * If a message is fwd to an address on another ccmed server:
       * it can be sent by reference, in which case a URL is sent.
       * if by value, normal SMTP S/MIME procedures are followed.
 * Email address creation (multi-user).
