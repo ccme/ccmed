@@ -13,9 +13,11 @@ Think gmail, twitter, skype, and github for encrypted secure email (s/mime).  It
 
 History
 -------
-ccmed was designed as a secure way to exchange e-mail for health care.  The great work of [The Direct Project](http://wiki.directproject.org/) lead to an emerging standard for encrypting messages for secure communications in health care.  It called for the creation of Health Information Service Providers, or HISPs, that would facilitate the exchange of health information in a secure way.  Since *The Direct Project* choose to use S/MIME as the method, it meant that regular old email systems could be used as a transport health information.  The problem is that few email readers support S/MIME.
+ccmed was designed as a secure way to exchange e-mail for health care.  The great work of [The Direct Project](http://wiki.directproject.org/) lead to an emerging standard for encrypting messages for secure communications in health care.  It called for the creation of Health Information Service Providers, or HISPs, that would facilitate the exchange of health information in a secure way.  Since *The Direct Project* choose to use S/MIME as the method, it meant that regular old email systems could be used to transport health information.  The problem is that few email readers support S/MIME.
 
-Does that mean ccmed is only for health care?  No!  ccmed allows anyone to create their own secure email server that includes a message viewer which understands encrypted and signed messages... all in a single platform.  
+Does that mean ccmed is only for health care?  No!  
+
+ccmed allows anyone to create their own secure email server that includes a message viewer which understands encrypted and signed messages... all in a single platform.  
 
 ccMe.com
 --------
