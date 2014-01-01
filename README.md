@@ -3,13 +3,26 @@ ccmed
 
 ccMe Mail Server Daemon
 
-An open, simple, secure, mail server and viewer in a single portable package.  It is the server that powers https://ccme.com/ and is open sourced (tho ccme.com has some features that are not part of the open source version).
+An open, simple, secure, mail server and viewer in a single portable package.  It is the server that powers https://ccme.com/ and is open sourced (although ccme.com has some features that are not part of the open source version).
 
 Written in node.js and meteor.js, it is easy to install and simple to run.
 
 Idea
 -----
-Think gmail, twitter, and github for encrypted secure email (s/mime).  HISP compliant with policy discovery.
+Think gmail, twitter, and github for encrypted secure email (s/mime).  It does not compete with gmail, twitter, or github...  ccmed is only for encrypted message communication.
+
+History
+-------
+ccmed was designed as a secure way to exchange e-mail for healthcare.  The great work of [The Direct Project](http://wiki.directproject.org/) lead to an emerging standard for encrypting messages for secure communications in healthcare.  It called for the creation of Health Information Serive Providers, or HISPs, that would facilitate the exchange of health information in a secure way.  Since *The Direct Project* choose to use S/MIME as the method, it meant that regular old email systems could be used as a transport for health information.  The problem is that few email readers support S/MIME.
+
+Does that mean ccmed is only for healthcare?  No!  ccmed allows anyone to create their own secure email server that includes a message viewer that understands encrypted and signed messages... all in a single platform.  
+
+ccMe.com
+--------
+ccMe is the central node for two purposes and is *not required* to use ccmed:
+
+1. ccme.com is the free hosted version of ccmed.  ccme.com is an easy to remember email address.  It will allow users to freely use secure e-mail without having to setup their own HISP or ccmed.  It has an easy to remember name, and as a brand, everyone will know a ccme.com email address will only work with encrypted, signed, email.  So don't send spam to it since it will just be ignored.  And if you do spam, your certificates will get delisted from policy files that attest that you do not do spam. 
+2. It is the central node that caches all directory services for other ccmed servers that want to participate in name lookup or company lookup functions.
 
 Quick Install
 -------------
@@ -39,20 +52,52 @@ Manual Install
 
 Client UI Features
 -------------------
-* Email Address creation (multi-user).
-  * Can register and create an email identity and make a private key.
-  * Easy registration with ccme.com for forwarding a ccme handle to a local mail store.
-  * Can mark address to be publically shared via ldap.
-  * Can register server with ccme.com to be disoverable in other directories.
-* Contact Managment 
+* Simple inbox functions [New, Read]
+  * messages can be grouped by subject, thread, sender or by meta data:
+    * selected mime header data
+    * special meta data, for example [CDA](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=258):  
+      * Required: RecordTarget, Author, Custodian
+      * Optional: DataEnterer, Informant, InformationRecipient, LegalAuthenticator, etc ...
+* Folder metaphore (using tagging) called foldertags.  They basically work like folders and tags.
+  * foldertags are random hashes.  Hashes can be shared to enable sharing of folders.
+  * foldertags can contain document that are just other foldertags thus providing a hierarchy.
+* [Responsive design](http://en.wikipedia.org/wiki/Responsive_web_design) for displaying for mobile/pocket, tablet, or desktop that is ADA compliant.
+* Message handling:
+  * Messages are stored encrypted, but can be optionally decrypted.  Signatures are retained.  
+  * Support format priorities:
+    * text/plain
+    * [application/cda+xml](http://wiki.directproject.org/share/view/23044739?replyId=23097977)  
+      * and others: application/cda.c37+xml  application/ccd.c32+xml application/ccd+xml
+    * multipart/signed
+    * application/pdf
+    * application/json
+    * text/x-markdown
+    * text/html (stripped of script tags)
+    * text/xml  and  application/xml
+    * text/csv
+    * application/EDI-X12 and application/EDIFACT
+    * application/zip  application/gzip
+    * [application/edi-hl7v2](http://wiki.hl7.org/index.php?title=Media-types_for_various_message_formats)
+  * If messages are decrypted, meta data is extracted for the message for sorting and indexing messages.
+    * For CDA, document header data becomes json attributes of the message.
+    * Some care must be taken since messages can contain multiple patients.
+  * Message forarding:
+    * If a message is fwd to an address on the same server:
+      * it is simply added to their inbox and if encrypted, the symmetric key is encrypted for the receiver.
+    * If a message is fwd to and address on another ccmed server:
+      * it can be sent by reference, in which case a URL is sent.
+      * if by value, normal SMTP S/MIME procedures are followed.
+* Email address creation (multi-user).
+  * can register and create an email identity and make a private key.
+  * easy registration with ccme.com for forwarding a ccme handle to a local mail store.
+  * can mark address to be publically shared via ldap.
+  * can register server with ccme.com to be discoverable in other directories.
+* Contact management 
   * A local store (with public key discovery and cache)
   * Remote lookup of email addresses and certificate display/verification.
   * Contacts can be marked to be shared with users within a ccmed server.
-  * Public Key Discovery
+  * Public key discovery
     * HISP compliant key discovery.
-* Message display
-  * Multiple Folders per mailbox
-  * Folders can be shared
 * On startup:
   * Check git hub.  
   * If git is new, warn there is a newer version in UI.  (do a git pull)
@@ -62,21 +107,22 @@ Server Features
 * Port: HTTP/S Server for UI
   * See above, but supports REST API for Messages
   * Policy discovery.
-* Port: SMTP Server for Mail
+* Port: SMTP Server for mail
   * Mail is rejected if not S/MIME compliant.
-* Port: LDAP Server
+* Port: LDAP server
   * Used to serve certificate discovery requests for addresses hosted my ccmed server.
   * Optionally shares meta data about the user.
-* Port: DNS Server
+* Port: DNS server
 * Port: IMAP  (future)
 
 Collections
 -----------
 * address
 * contacts
-* messages
-  * messageid, folderid[], content[]
+* documents
+  * messageid, foldertag[], keys[], content[]
 * config
   * Root CA
     * Policy file to share to the world the address policies of the ccmed server.
   * Trust bundles
+
