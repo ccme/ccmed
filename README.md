@@ -82,12 +82,16 @@ Client UI Features
   * easy registration with ccme.com for forwarding a ccme handle to a local mail store.
   * can mark address to be publicly shared via LDAP.
   * can register server with ccme.com to be discoverable in other directories.
+  * can upload an image to be displayed with cert lookup.
+  * [MAYBE] can upload multiple certs for an address.  
+    * IE: one cert for LOA 2, another with LOA3, or one signed by one CA, and other by yet another CA. 
 * Contact management 
   * A local store (with public key discovery and cache)
   * Remote lookup of email addresses and certificate display/verification.
   * Contacts can be marked to be shared with users within a ccmed server.
   * Public key discovery
     * HISP compliant key discovery.
+  * Gravitar lookup for email addresses, also gravitar-like lookup for ccme.com 
 * On startup:
   * Check git hub.  
   * If git is new, warn there is a newer version in UI.  (do a git pull)
