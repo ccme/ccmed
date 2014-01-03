@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "meteor-mailparser": {},
+    "moment": {},
+    "npm": {},
+    "gravatar": {}
+  }
+}
