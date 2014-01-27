@@ -134,6 +134,12 @@ Document/Message Storage
 * MIME handling:
   * [smime-node](https://github.com/kachok/smime-node/blob/master/lib/smime-node.js) Node.js wrapper for OpenSSL S/MIME commands
   * [mailparser](https://github.com/andris9/mailparser) Decode mime formatted e-mails, but currently does not support signatures.
+  * [Haraka](https://github.com/baudehlo/Haraka) - node based mail server.
+    * [haraka-mongo](https://github.com/jamescowie/haraka-mongo) - Plugin to allow emails to be stored in Mongo DB  (needs a lot of work, but basically has the idea)
+* Crypto notes:
+  * Server using openssl: https://github.com/Obvious/ursa
+  * Windows/Mac but complicated: http://kjur.github.io/jsrsasign/
+  * Client and simpliler for signing: http://kjur.github.io/jsjws/  (but it wont read local key stores... i think)
 
 Collections
 -----------
