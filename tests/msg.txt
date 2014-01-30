@@ -1,0 +1,12 @@
+EHLO hostname
+MAIL FROM: <test@ccme.com>
+RCPT TO:   <test@ccme.com>
+DATA
+From: A tester <test@ccme.com>
+To:   <test@ccme.com>
+Date: date
+Subject: A test message from hostname
+
+Delete me, please
+.
+QUIT
