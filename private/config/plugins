@@ -10,7 +10,7 @@ dnsbl
 data.rfc5322_header_checks
 
 # block mail from some known bad HELOs - see config/helo.checks.ini for configuration
-helo.checks
+#helo.checks
 
 # control which "MAIL FROM" addresses you accept. See docs.
 mail_from.access
@@ -29,4 +29,4 @@ rcpt_to.access
 rcpt_to.in_host_list
 
 # Queue mail via smtp - see config/smtp_forward.ini for where your mail goes
-queue/smtp_forward
+#queue/smtp_forward

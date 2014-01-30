@@ -1,0 +1,11 @@
+LOGDATA
+; logger.LOGDATA      = 9;
+; logger.LOGPROTOCOL  = 8;
+; logger.LOGDEBUG     = 7;
+; logger.LOGINFO      = 6;
+; logger.LOGNOTICE    = 5;
+; logger.LOGWARN      = 4;
+; logger.LOGERROR     = 3;
+; logger.LOGCRIT      = 2;
+; logger.LOGALERT     = 1;
+; logger.LOGEMERG     = 0;
