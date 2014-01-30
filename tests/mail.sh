@@ -1,2 +1,2 @@
 :
-ncat -C localhost 2525 < msg.txt
+nc -C localhost 2525 < msg.txt
