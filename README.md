@@ -39,19 +39,19 @@ Windows:
 
 That's it.  You are now running a local version.
 
-These scripts install meteorite, git checkout the latest stable version, and run meteor.
+These scripts install meteor, git checkout the latest stable version, and run meteor.
 
 Manual Install
 --------------
 * Unix:
-  * Install meteorire
+  * Install meteor 
   * Install git
-  * run meteorite
+  * run meteor
 * Windows:
-  * Install meteorite from https://github.com/sdarnell/meteor/wiki/Windows
+  * Install meteor from https://github.com/sdarnell/meteor/wiki/Windows
   * install git
   * git clone https://github.com/ccme/ccmed.git
-  * run meteorite
+  * run meteor
 
 Client UI Features
 -------------------
