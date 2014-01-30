@@ -1,82 +1,85 @@
 <template name="editprofile">
-	<hr />
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Edit Profile</h3>
-		</div>
-		<div class="panel-body">
-			<p><img width="128" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 Meteor.user.emails.0.address}}?s=128" alt="{{this.emails.0.address}}" /></p>
-			<p><small>You can change your avatar at <a href="https://gravatar.com/" target="_blank">gravatar.com</a> - You can change your password by clicking your name on the top right of your screen, or <a href="javascript:$('#login-dropdown-list').addClass('open');">clicking here</a>.</small></p>
-			<p>
-				<div class="input-group input-group-lg">
-					<span class="input-group-addon">uid</span>
-					<input type="text" disabled id="created" value="{{Meteor.user._id}}" class="form-control">
-				</div>
-			</p>	
-			<p>
-				<div class="input-group input-group-lg">
-					<span class="input-group-addon">Joined</span>
-					<input type="text" disabled id="joined" value="{{Meteor.user.createdAt}}" class="form-control">
-				</div>
-			</p>
-			<p>
-				<div class="input-group input-group-lg">
-					<span class="input-group-addon">Email</span>
-					<input type="email" disabled id="created" value="{{Meteor.user.emails.0.address}}" class="form-control">
-				</div>
-			</p>
-			<form action="/" method="POST">
-				<p>
-					<div class="input-group input-group-lg">
-						<span class="input-group-addon">Full Name</span>
-						<input type="text" name="fullname" value="{{Meteor.user.profile.name}}" class="form-control" placeholder="Full Name">
-					</div>
-				</p>
-				<p>
-					<div class="input-group input-group-lg">
-						<span class="input-group-addon">@</span>
-						<input type="text" name="username" value="{{Meteor.user.username}}" class="form-control" placeholder="Username">
-					</div>
-				</p>
-				<p>
-					<button type="submit" class="btn btn-primary btn-lg">Save</button>
-				</p>
-			</form>
-		</div>
-	</div>
-	{{>userkeys}}
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Edit Profile</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                <img width="128" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 Meteor.user.emails.0.address}}?s=128" alt="{{this.emails.0.address}}" />
+            </p>
+            <p>
+                <small>You can change your avatar at <a href="https://gravatar.com/" target="_blank">gravatar.com</a> - You can change your password by clicking your name on the top right of your screen, or <a href="javascript:$('#login-dropdown-list').addClass('open');">clicking here</a>.</small>
+            </p>
+            <p>
+                <div class="input-group input-group-small">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </span>
+                    <input type="email" disabled id="created" value="{{Meteor.user.emails.0.address}}" class="form-control">
+                </div>
+            </p>
+            <form action="/" method="POST">
+                <p>
+                    <div class="input-group input-group-small">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                        <input type="text" name="fullname" value="{{Meteor.user.profile.name}}" class="form-control" placeholder="Full Name">
+                    </div>
+                </p>
+                <p>
+                    <div class="input-group input-group-small">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-heart-empty"></span>
+                        </span>
+                        <input type="text" name="username" value="{{Meteor.user.username}}" class="form-control" placeholder="Username">
+                    </div>
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-primary btn-small">Save</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    {{>userkeys}}
 </template>
 
 <template name="userkeys">
-	<hr />
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Your Keys</h3>
-		</div>
-		<div class="panel-body">
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Your Keys</h3>
+        </div>
+        <div class="panel-body">
 
-			<p>
-				You can generate a private\public key pair using openssl, or you can generate a 2048 key in your browser.
-			</p>
-			<form action="/" method="POST">
-				<span id="private_key_wrap" style="display:none;">
-					<p>
-						<div class="input-group input-group-lg">
-							<span class="input-group-addon">Passphrase</span>
-							<input type="text" name="passphrase" class="form-control" placeholder="Type in a strong passphrase here.">
-						</div>
-					</p>
-					<p>
-						<textarea class="form-control" placeholder="RSA Private Key" name="private_key" rows="5">{{Meteor.user.private_key}}</textarea>
-					</p>
-					<p>
-						<textarea class="form-control" placeholder="RSA Public Key" name="public_key" rows="5">{{Meteor.user.public_key}}</textarea>
-					</p>
-				</span>
-				<p>
-					<button type="button" id="show_private_key" class="btn btn-primary btn-lg">Show Keys</button>&nbsp;<button type="button" id="hide_private_key" style="display:none;" class="btn btn-primary btn-lg">Hide Keys</button>&nbsp;<button style="display:none;" type="button" id="generate_private_key" name="generate" class="btn btn-primary btn-lg">Generate</button>&nbsp;<button style="display:none;" id="submit_private_key" type="submit" class="btn btn-primary btn-lg">Save</button>
-				</p>
-			</form>
-		</div>
-	</div>
+            <p>
+                You can generate a private\public key pair using openssl, or you can generate a 2048 key in your browser.
+            </p>
+            <form action="/" method="POST">
+                <span id="private_key_wrap" style="display:none;">
+                    <p>
+                        <div class="input-group input-group-small">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input type="text" name="passphrase" class="form-control" placeholder="Type in a strong passphrase here.">
+                        </div>
+                    </p>
+                    <p>
+                        <textarea class="form-control" placeholder="RSA Private Key" name="private_key" rows="5">{{Meteor.user.private_key}}</textarea>
+                    </p>
+                    <p>
+                        <textarea class="form-control" placeholder="RSA Public Key" name="public_key" rows="5">{{Meteor.user.public_key}}</textarea>
+                    </p>
+                </span>
+                <p>
+                    <button type="button" id="show_private_key" class="btn btn-primary btn-small">Show Keys</button>&nbsp;
+                    <button type="button" id="hide_private_key" style="display:none;" class="btn btn-primary btn-small">Hide Keys</button>&nbsp;
+                    <button style="display:none;" type="button" id="generate_private_key" name="generate" class="btn btn-primary btn-small">Generate</button>&nbsp;
+                    <button style="display:none;" id="submit_private_key" type="submit" class="btn btn-primary btn-small">Save</button>
+                </p>
+            </form>
+        </div>
+    </div>
 </template>

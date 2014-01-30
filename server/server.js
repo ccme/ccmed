@@ -15,41 +15,41 @@ var Haraka = Meteor.require('Haraka');
 
 
 Meteor.publish("directory", function() {
-	return Meteor.users.find({}, {
-		fields: {
-			emails: 1,
-			profile: 1
-		}
-	});
+    return Meteor.users.find({}, {
+        fields: {
+            emails: 1,
+            profile: 1
+        }
+    });
 });
 
 Meteor.publish("Messages", function() {
-	return Messages.find({
-		$or: [{
-			"public": true
-		}, {
-			invited: this.userId
-		}, {
-			owner: this.userId
-		}]
-	});
+    return Messages.find({
+        $or: [{
+            "public": true
+        }, {
+            invited: this.userId
+        }, {
+            owner: this.userId
+        }]
+    });
 });
 
 /* TODO: Remove ability for users to change profile.admin */
 Meteor.users.allow({
-	update: function(userId, user, fields, modifier) {
-		if (user._id === userId) {
-			Meteor.users.update({
-				_id: userId
-			}, modifier);
-			return true;
-		} else return false;
-	}
+    update: function(userId, user, fields, modifier) {
+        if (user._id === userId) {
+            Meteor.users.update({
+                _id: userId
+            }, modifier);
+            return true;
+        } else return false;
+    }
 });
 Meteor.publish("userStatus", function() {
-	return Meteor.users.find({
-		"status.online": true
-	}, {
-		fields: {}
-	});
+    return Meteor.users.find({
+        "status.online": true
+    }, {
+        fields: {}
+    });
 });
