@@ -1,0 +1,53 @@
+<template name="setup">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">First time setup</h3>
+		</div>
+		<div class="panel-body">
+			<p>Welcome to your ccmed server. To get started fill out the form below and hit Continue.</p>
+			<form action="/" method="POST">
+				<p>
+					<div class="input-group input-group-lg" id="div_email">
+						<span class="input-group-addon">Email</span>
+						<input type="email" required name="email" placeholder="Backup email address." class="form-control">
+					</div>
+				</p>
+				<p>
+					<div class="input-group input-group-lg" id="div_fullname">
+						<span class="input-group-addon">Full Name</span>
+						<input type="text" required name="fullname" class="form-control" placeholder="This is your full name.">
+					</div>
+				</p>
+				<p>
+					<div class="input-group input-group-lg" id="div_username">
+						<span class="input-group-addon">@</span>
+						<input type="text" required name="username" class="form-control" placeholder="Your administrator username.">
+					</div>
+				</p>
+				<p>
+					<div class="input-group input-group-lg" id="div_password">
+						<span class="input-group-addon">Password</span>
+						<input type="password" required name="password" class="form-control" placeholder="Pick something strong for your password.">
+					</div>
+				</p>
+				<p>
+					<div class="input-group input-group-lg" id="div_password_verify">
+						<span class="input-group-addon">Verify</span>
+						<input type="password" required name="password_verify" class="form-control" placeholder="Please type your password again.">
+					</div>
+				</p>
+				<p>
+					<button type="submit" class="btn btn-primary btn-lg">Continue</button>
+				</p>
+			</form>
+		</div>
+	</div>
+
+	<div style="display:none;" id="error" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Error!</h3>
+		</div>
+		<div class="panel-body" id="errors">
+		</div>
+	</div>
+</template>

@@ -5,16 +5,21 @@
 
 standard-app-packages
 preserve-inputs
-accounts-ui
 accounts-password
 d3
-bootstrap
 email
-accounts-facebook
-accounts-twitter
 audit-argument-checks
 meteor-mailparser
 moment
 npm
 gravatar
 force-ssl
+bootstrap-3
+accounts-ui-bootstrap-3
+user-status
+router
+fast-render
+jquery
+crypto-base
+crypto-md5
+cryptico

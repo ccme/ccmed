@@ -3,6 +3,12 @@
     "meteor-mailparser": {},
     "moment": {},
     "npm": {},
-    "gravatar": {}
+    "gravatar": {},
+    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {},
+    "user-status": {},
+    "router": {},
+    "fast-render": {},
+    "cryptico": {}
   }
 }

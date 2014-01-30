@@ -1,0 +1,24 @@
+/* TEAM */
+	The Boss: Douglas Horner
+	Contact: horner [at] mieweb.com
+	Twitter: @doughorner
+	From: Fort Wayne, Indiana, USA
+
+	Developer: William Reiske
+	Contact: wreiske [at] mieweb.com
+	Twitter: @williamreiske
+	From: Fort Wayne, Indiana, USA
+
+	Developer: Dave Juntgen
+	Contact: djuntgen [at] mieweb.com
+	Twitter: @djuntgen
+	From: Fort Wayne, Indiana, USA
+
+/* THANKS */
+		
+
+/* SITE */
+	Last update: 2014/01/30
+	Language: English
+	Doctype: HTML5
+	IDE: Sublime Text, VIM
