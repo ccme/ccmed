@@ -5,41 +5,48 @@
             <h3 class="panel-title">Edit Profile</h3>
         </div>
         <div class="panel-body">
-            <p>
-                <img width="128" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 Meteor.user.emails.0.address}}?s=128" alt="{{this.emails.0.address}}" />
-            </p>
-            <p>
-                <small>You can change your avatar at <a href="https://gravatar.com/" target="_blank">gravatar.com</a> - You can change your password by clicking your name on the top right of your screen, or <a href="javascript:$('#login-dropdown-list').addClass('open');">clicking here</a>.</small>
-            </p>
-            <p>
-                <div class="input-group input-group-small">
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-envelope"></span>
-                    </span>
-                    <input type="email" disabled id="created" value="{{Meteor.user.emails.0.address}}" class="form-control">
+
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-3">
+                    <img width="265" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 Meteor.user.emails.0.address}}?s=265" alt="{{this.emails.0.address}}" />
                 </div>
-            </p>
-            <form action="/" method="POST">
-                <p>
-                    <div class="input-group input-group-small">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </span>
-                        <input type="text" name="fullname" value="{{Meteor.user.profile.name}}" class="form-control" placeholder="Full Name">
-                    </div>
-                </p>
-                <p>
-                    <div class="input-group input-group-small">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-heart-empty"></span>
-                        </span>
-                        <input type="text" name="username" value="{{Meteor.user.username}}" class="form-control" placeholder="Username">
-                    </div>
-                </p>
-                <p>
-                    <button type="submit" class="btn btn-primary btn-small">Save</button>
-                </p>
-            </form>
+                <div class="col-xs-12 col-md-9">
+                    <p>
+                        <small>You can change your avatar at <a href="https://gravatar.com/" target="_blank">gravatar.com</a> - You can change your password by clicking your name on the top right of your screen, or <a href="javascript:$('#login-dropdown-list').addClass('open');">clicking here</a>.</small>
+                    </p>
+                    <p>
+                        <div class="input-group input-group-small">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                            <input type="email" disabled id="created" value="{{Meteor.user.emails.0.address}}" class="form-control">
+                        </div>
+                    </p>
+                    <form action="/" method="POST">
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" name="fullname" value="{{Meteor.user.profile.name}}" class="form-control" placeholder="Full Name">
+                            </div>
+                        </p>
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                </span>
+                                <input type="text" name="username" value="{{Meteor.user.username}}" class="form-control" placeholder="Username">
+                            </div>
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btn-primary btn-small">Save</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
     {{>userkeys}}

@@ -13,7 +13,6 @@ meteor-mailparser
 moment
 npm
 gravatar
-force-ssl
 bootstrap-3
 accounts-ui-bootstrap-3
 user-status

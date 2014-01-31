@@ -8,24 +8,54 @@
 
                 {{#if firstrun}}
 
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="/firstrun">Setup</a>
                     </li>
                 </ul>
                 {{else}}
-                <ul class="nav navbar-nav">
-                    <li {{active "home" currentPage}}><a href="/home">Home</a>
-                    </li>
-                    <li {{active "messages" currentPage}}><a href="/messages">Messages <span class="badge">{{inbox_count}}</span></a>
-                    </li>
-                    <li {{active "about" currentPage}}><a href="/about">About</a>
+                <ul class="nav navbar-nav pull-right">
+
                     </li>
                     {{#if notloggedin}}
-                    <li {{active "login" currentPage}}><a href="/home">Please Login</a>
+                    <li {{active "login" currentPage}}>
+                        <a href="/home">Please Login</a>
+                    </li>
+
+                    {{else}}
+
+                    <li {{active "home" currentPage}}>
+                        <a href="/home">Home</a>
+                    </li>
+                    <li {{active "messages" currentPage}}>
+                        <a href="/messages">Messages <span class="badge">{{inbox_count}}</span></a>
                     </li>
                     {{/if}}
+                    <li {{active "about" currentPage}}>
+                        <a href="/about">About</a>
+                    </li>
+                    {{#if Meteor.user.profile.admin}}
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    {{/if}}
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav pull-right">
                     {{ loginButtons }}
                 </ul>
                 {{/if}}

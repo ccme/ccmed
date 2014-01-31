@@ -31,8 +31,13 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-code {
-    font-size: 80%;
-    .hidden {
-        display:none;
-    }
+.hidden {
+    display:none;
+}
+.blockquote-reverse, blockquote.pull-right {
+    padding-right: 15px;
+    padding-left: 0;
+    border-right: 5px solid #eee;
+    border-left: 0;
+    text-align: right;
+}
