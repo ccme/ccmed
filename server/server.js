@@ -11,7 +11,7 @@ var fs = Meteor.require('fs');
 net = Meteor.require('net'), 
 mailsocket_port = '/tmp/ccmed.sock';
 
-fs.unlinkSync(mailsocket_port);
+try { fs.unlinkSync(mailsocket_port); } catch (err) { }
 mailsocket = net.createServer( Meteor.bindEnvironment(function(connection) { 
 	// reporting 
 	console.log('Subscriber connected.'); 
