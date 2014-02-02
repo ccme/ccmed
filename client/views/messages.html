@@ -1,8 +1,7 @@
 <template name="messages">
-
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Inbox
+            <h3 class="panel-title">Email Inbox
                 <span class="badge">{{inbox_count}}</span>
             </h3>
         </div>
@@ -10,7 +9,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>To</th>
                         <th>From</th>
                         <th>Subject</th>
                         <th>Time</th>
@@ -18,69 +17,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>wreiske@mieweb.com</td>
-                        <td>This is a read message</td>
-                        <td>4 minutes ago</td>
-                        <td>
-                            <span class="label label-warning">Work</span>
-                        </td>
-                    </tr>
-                    <tr class="info">
-                        <td>2</td>
-                        <td>wreiske@mieweb.com</td>
-                        <td>This is an unread message</td>
-                        <td>5 minutes ago</td>
-                        <td>
-                            <span class="label label-danger">Spam</span>
-                        </td>
-                    </tr>
+                    {{#each message}}
+                        <tr id="message_{{this._id}}">
+                            <td>{{this.header.headers.to}}</td>
+                            <td>{{this.header.headers.from}}</td>
+                            <td>{{this.header.headers.subject}}</td>
+                            <td>{{this.header.headers.date}}</td>
+                            <td>
+                                <span class="label label-warning">Folder</span>
+                            </td>
+                        </tr>
+                    {{/each}}
                 </tbody>
             </table>
-
-
-            <div class="list-group">
-                <a href="#" class="list-group-item active">
-                    <h4 class="list-group-item-heading">Douglas Horner</h4>
-                    <p class="list-group-item-text">
-                        Anything really. I could eat an entire cow.
-                    </p>
-                </a>
-                <a href="#" class="list-group-item ">
-                    <h4 class="list-group-item-heading">Dave Juntgen</h4>
-                    <p class="list-group-item-text">This is a part of the message...</p>
-                </a>
-            </div>
-
-            <blockquote>
-                <p>Hey, what are we having for dinner tonight?</p>
-                <footer>Sent 4 minutes ago by
-                    <cite title="Source Title">William Reiske</cite>
-                </footer>
-            </blockquote>
-
-            <blockquote class="blockquote-reverse">
-                <p>Not sure. What would you like??</p>
-                <footer>Received 39 seconds ago by
-                    <cite title="Source Title">Douglas Horner</cite>
-                </footer>
-            </blockquote>
-
-            <blockquote>
-                <p>Anything really. I could eat an entire cow.</p>
-                <footer>Sent 12 seconds ago by
-                    <cite title="Source Title">William Reiske</cite>
-                </footer>
-            </blockquote>
         </div>
         <div class="panel-footer">
             <div class="text-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default">Create New Message</button>
-                    <button type="button" class="btn btn-default">Delete Message</button>
-                    <button type="button" class="btn btn-default">Reply</button>
-                </div>
+                0 unread messages
             </div>
         </div>
     </div>

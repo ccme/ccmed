@@ -49,15 +49,7 @@ Meteor.publish("directory", function() {
 });
 
 Meteor.publish("Messages", function() {
-    return Messages.find({
-        $or: [{
-            "public": true
-        }, {
-            invited: this.userId
-        }, {
-            owner: this.userId
-        }]
-    });
+    return Messages.find();
 });
 
 /* TODO: Remove ability for users to change profile.admin */
