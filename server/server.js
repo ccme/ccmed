@@ -18,8 +18,9 @@ mailsocket = net.createServer( Meteor.bindEnvironment(function(connection) {
 	connection.write("Simple MIME Poster.\n"); // watcher setup 
 	// cleanup 
 	connection.on('data', Meteor.bindEnvironment(function(data) { 
-//		console.log('data:',data.toString()); 
-		var docid = Messages.insert(data.toString());
+		var msg = JSON.parse(data.toString());
+//		console.log('data:',msg); 
+		var docid = Messages.insert( msg );
 		console.log('Inserted:',docid);
 	})); 
 	connection.on('close', function() { 
