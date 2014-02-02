@@ -3,9 +3,33 @@
 // SMTP
 // The dir /private becomes assets/app when meteor builds the site.  This tells Haraka to use that directory as it's base dir.
 process.env.HARAKA = process.cwd() + '/assets/app';
-console.log("ENV:", process.env.HARAKA);
-
+//console.log("ENV:", process.env.HARAKA);
 var Haraka = Meteor.require('Haraka');
+
+// This is a simple server that get mail and stores it in the Meteor DB
+var fs = Meteor.require('fs');
+net = Meteor.require('net'), 
+mailsocket_port = '/tmp/ccmed.sock';
+
+fs.unlinkSync(mailsocket_port);
+mailsocket = net.createServer( Meteor.bindEnvironment(function(connection) { 
+	// reporting 
+	console.log('Subscriber connected.'); 
+	connection.write("Simple MIME Poster.\n"); // watcher setup 
+	// cleanup 
+	connection.on('data', Meteor.bindEnvironment(function(data) { 
+//		console.log('data:',data.toString()); 
+		var docid = Messages.insert(data.toString());
+		console.log('Inserted:',docid);
+	})); 
+	connection.on('close', function() { 
+		console.log('Subscriber disconnected.'); 
+	}); 
+})); 
+mailsocket.listen( mailsocket_port, function() { 
+	console.log('Listening for subscribers on (%s)...',mailsocket_port); 
+});
+
 
 // DNS
 
