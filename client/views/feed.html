@@ -1,0 +1,71 @@
+<template name="feed">
+    <div class="row">
+        <div class="col-md-3 col-md-push-9">{{>left}}</div>
+        <div class="col-md-9 col-md-pull-3">{{>right}}</div>
+    </div>
+</template>
+
+<template name="left">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Hello {{Meteor.user.profile.name}}.</h3>
+        </div>
+        <div class="panel-body">
+            <div class="text-center">
+                <p>
+                    <img width="120" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 Meteor.user.emails.0.address}}?s=120" alt="{{this.emails.0.address}}" />
+                </p>
+                <p>{{Meteor.user.profile.name}}</p>
+                <p>{{Meteor.user.emails.0.address}}</p>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="text-center">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                        <a href="/home" class="btn btn-default btn-small">Edit</a>
+                    </div>
+                    <div class="btn-group">
+                        <a href="/profile" class="btn  btn-default btn-small">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="right">
+    {{#each message}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <img width="25" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 this.mail_from.original}}?s=25" title="{{this.mail_from.original}}" />&nbsp;{{this.header.headers.from}}
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p>{{this.header.headers.to}}</p>
+            <p>{{this.header.headers.from}}</p>
+            <p>{{this.header.headers.subject}}</p>
+            <p>{{this.header.headers.date}}</p>
+        </div>
+        <div class="panel-footer">
+            <div class="text-center">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">Like</button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">Reply</button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">Forward</button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</template>
