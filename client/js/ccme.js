@@ -18,11 +18,13 @@ Handlebars.registerHelper('firstrun', function() {
 
 Handlebars.registerHelper('isadmin', function() {
     if (Meteor.user()) {
-        if (Meteor.user().profile.admin == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        try {
+            if (Meteor.user().profile.admin == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (err) {}
     }
 });
 
@@ -43,12 +45,6 @@ Handlebars.registerHelper('usercountonline', function() {
 });
 
 Handlebars.registerHelper('md5', function(string) {
-    if (string.contains('<')) {
-        string.replace('<', '');
-    }
-    if (string.contains('>')) {
-        string.replace('>', '');
-    }
     return CryptoJS.MD5(string).toString();
 });
 
@@ -58,7 +54,8 @@ Meteor.Router.add({
     '/about': 'about',
     '/setup': 'setup',
     '/messages': 'messages',
-    '/feed': 'feed'
+    '/feed': 'feed',
+    '/admin': 'admin'
 });
 
 Meteor.Router.filters({

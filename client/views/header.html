@@ -11,17 +11,14 @@
                 <a class="navbar-brand" href="#">ccmed :: {{currentPage}}</a>
             </div>
             <div class="navbar-collapse collapse">
-
                 {{#if firstrun}}
-
                 <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="/firstrun">Setup</a>
+                    <li class="active">
+                        <a href="/firstrun">Setup</a>
                     </li>
                 </ul>
                 {{else}}
                 <ul class="nav navbar-nav pull-right">
-
-                    </li>
                     {{#if notloggedin}}
                     <li {{active "login" currentPage}}>
                         <a href="/home">Please Login</a>

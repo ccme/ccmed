@@ -39,7 +39,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <img width="25" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{md5 this.mail_from.original}}?s=25" title="{{this.mail_from.original}}" />&nbsp;{{this.header.headers.from}}
+                <img width="25" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{format_gravatar this.mail_from.original}}?s=25" title="{{this.mail_from.original}}" />&nbsp;{{this.header.headers.from}}
             </h3>
         </div>
         <div class="panel-body">

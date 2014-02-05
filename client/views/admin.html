@@ -1,0 +1,32 @@
+<template name="admin">
+    {{#if isadmin}} {{>adminstart}} {{else}} {{>notadmin}} {{/if}}
+</template>
+<template name="adminstart">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Hostname not set</h3>
+        </div>
+        <div class="panel-body">
+            You don't have a hostname set to receive email from.
+        </div>
+    </div>
+        <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">Some other alert</h3>
+        </div>
+        <div class="panel-body">
+            This is a warning.
+        </div>
+    </div>
+</template>
+
+<template name="notadmin">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">Access Denied</h3>
+        </div>
+        <div class="panel-body">
+            You do not have access to this feature.
+        </div>
+    </div>
+</template>

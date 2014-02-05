@@ -1,10 +1,12 @@
 <template name="footer">
     <div id="footer">
         <div class="container">
-            <p class="text-muted">ccmed Administration Panel. {{usercount}} registered users. {{usercountonline}} users online. &copy; 2014 ccme.com
-            {{#if isadmin}}
-                <a class="btn btn-default btn-sm" href="/admin">Administration Panel</a>
-            {{/if}}
+            <p class="text-muted">
+                ccmed Administration Panel. {{usercount}} registered users. {{usercountonline}} users online. &copy; 2014 ccme.com 
+                {{#if isadmin}} 
+                &dash;
+                <a href="/admin">Administration Panel</a>
+                {{/if}}
             </p>
         </div>
     </div>
