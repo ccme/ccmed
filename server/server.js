@@ -13,19 +13,23 @@ mailsocket_port = '/tmp/ccmed.sock';
 
 try { fs.unlinkSync(mailsocket_port); } catch (err) { }
 mailsocket = net.createServer( Meteor.bindEnvironment(function(connection) { 
+	var complete_msg = '';
 	// reporting 
+	debugger;
 	console.log('Subscriber connected.'); 
-	connection.write("Simple MIME Poster.\n"); // watcher setup 
+	connection.write("Simple JSON store. Tell me your woes and I will record them.\n"); // watcher setup 
 	// cleanup 
-	connection.on('data', Meteor.bindEnvironment(function(data) { 
-		var msg = JSON.parse(data.toString());
+	connection.on('data', function(data) { 
+		complete_msg += data.toString();
+		console.log('Got some data');
+	}); 
+	connection.on('close', Meteor.bindEnvironment(function() { 
+		console.log('Subscriber disconnected.'); 
+		var msg = JSON.parse(complete_msg);
 //		console.log('data:',msg); 
 		var docid = Messages.insert( msg );
 		console.log('Inserted:',docid);
 	})); 
-	connection.on('close', function() { 
-		console.log('Subscriber disconnected.'); 
-	}); 
 })); 
 mailsocket.listen( mailsocket_port, function() { 
 	console.log('Listening for subscribers on (%s)...',mailsocket_port); 
