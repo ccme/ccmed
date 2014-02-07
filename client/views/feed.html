@@ -39,11 +39,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <img width="25" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{format_gravatar this.mail_from.original}}?s=25" title="{{this.mail_from.original}}" />&nbsp;{{this.headers_decoded.from}}
+                <img width="25" class="img-thumbnail" src="http://www.gravatar.com/avatar/{{format_gravatar this.mail_from.original}}?s=25" title="{{this.mail_from.original}}" />&nbsp;{{this.headers.from}}
             </h3>
         </div>
         <div class="panel-body">
-            <p>{{this.bodytext}}</p>
+            <p>{{this.body}}</p>
         </div>
         <div class="panel-footer">
             <div class="text-center">

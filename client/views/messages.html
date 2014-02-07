@@ -20,10 +20,10 @@
                     <tbody>
                         {{#each message}}
                         <tr data-toggle="message_{{this._id}}" onmousedown="$('#message_{{this._id}}').modal({show:true});">
-                            <td>{{this.headers_decoded.to}}</td>
-                            <td>{{this.headers_decoded.from}}</td>
-                            <td>{{this.headers_decoded.subject}}</td>
-                            <td>{{moment this.headers_decoded.date.[0]}}</td>
+                            <td>{{this.headers.to}}</td>
+                            <td>{{this.headers.from}}</td>
+                            <td>{{this.headers.subject}}</td>
+                            <td>{{moment this.headers.date.[0]}}</td>
                             <td>
                                 <span class="label label-warning">Folder</span>
                             </td>
@@ -46,10 +46,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">{{this.headers_decoded.from}}</h4>
+                    <h4 class="modal-title">{{this.headers.from}}</h4>
                 </div>
                 <div class="modal-body">
-                    {{this.bodytext}}
+                    {{this.body}}
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-dismiss="modal" class="btn">Close</a>
