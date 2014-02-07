@@ -11,7 +11,8 @@
       "user-status": {},
       "router": {},
       "fast-render": {},
-      "cryptico": {}
+      "cryptico": {},
+      "jsencrypt": {}
     },
     "packages": {
       "meteor-mailparser": {
@@ -63,6 +64,11 @@
         "git": "https://github.com/E3pO/meteor-cryptico.git",
         "tag": "v0.2.4",
         "commit": "aee69b21f315b8c9f148169c5c4c6cc9bd853ff6"
+      },
+      "jsencrypt": {
+        "git": "https://github.com/wreiske/meteor-jsencrypt.git",
+        "tag": "v0.1.1",
+        "commit": "9d7bae06a4a020fbc62d3ae8e245b1cb3d750f5a"
       },
       "crypto-md5": {
         "git": "https://github.com/oortcloud/meteor-crypto-md5.git",

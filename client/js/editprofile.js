@@ -14,29 +14,59 @@ Template.editprofile.events = {
 Template.userkeys.events = {
     'submit form': function(e) {
         e.preventDefault();
-        Meteor.users.update({
-            _id: Meteor.user()._id
-        }, {
-            $set: {
-                "private_key": $(e.target).find('[name=private_key]').val(),
-                "public_key": $(e.target).find('[name=public_key]').val()
-            }
+
+        var crypt_private = new JSEncrypt({
+            default_key_size: 2048
         });
+        crypt_private.setKey($(e.target).find('[name=private_key]').val());
+
+        var crypt_public = new JSEncrypt({
+            default_key_size: 2048
+        });
+        crypt_public.setKey($(e.target).find('[name=public_key]').val());
+
+        var text = 'CCMED Test Encryption';
+        // Encrypt the data with the public key.
+        var enc = crypt_public.encrypt(text);
+
+        // Now decrypt the crypted text with the private key.
+        var dec = crypt_private.decrypt(enc);
+
+        console.log(dec);
+        // Now a simple check to see if the round-trip worked.
+        if (dec === text) {
+            Meteor.users.update({
+                _id: Meteor.user()._id
+            }, {
+                $set: {
+                    "private_key": $(e.target).find('[name=private_key]').val(),
+                    "public_key": $(e.target).find('[name=public_key]').val()
+                }
+            });
+            return true;
+        } else {
+            alert('Unable to run encryption/decryption test with your private/public key. Are you sure they are valid?');
+            return false;
+        }
     },
     'click #generate_private_key': function(e, template) {
-        var passphrase = $('input[name="passphrase"]').val();
-        if (passphrase == "") {
-            alert('You need to have a passphrase before you can generate a private key.');
-        } else {
-            $('#generate_private_key').text("Generating...");
-            alert('Hit OK to start generating. Your browser may lock up for a moment.');
-            var bits = 2048;
-            var RSAkey = cryptico.generateRSAKey(passphrase, bits);
-            var PublicKeyString = cryptico.publicKeyString(RSAkey);
-            $('textarea[name="private_key"]').val(JSON.stringify(RSAkey));
-            $('textarea[name="public_key"]').val(PublicKeyString);
-            $('#generate_private_key').text("Generate");
-        }
+        $('#generate_private_key').text("Generating...");
+        alert('Hit OK to start generating. Your browser may lock up for a moment.');
+
+        //----------------- New RSA Stuff
+        crypt = new JSEncrypt({
+            default_key_size: 2048
+        });
+        var dt = new Date();
+        var time = -(dt.getTime());
+        crypt.getKey();
+        dt = new Date();
+        time += (dt.getTime());
+        //----------------- End new RSA Stuff
+
+        $('textarea[name="private_key"]').val(crypt.getPrivateKey());
+        $('textarea[name="public_key"]').val(crypt.getPublicKey());
+        $('#generate_private_key').text("Generate");
     },
     'click #show_private_key': function(e, template) {
         $('#private_key_wrap').fadeIn();

@@ -9,6 +9,7 @@
     "user-status": {},
     "router": {},
     "fast-render": {},
-    "cryptico": {}
+    "cryptico": {},
+    "jsencrypt": {}
   }
 }
