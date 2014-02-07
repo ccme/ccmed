@@ -1,4 +1,5 @@
 Messages = new Meteor.Collection("Messages");
+ServerSettings = new Meteor.Collection("ServerSettings");
 
 Messages.allow({
     insert: function(userId, message) {
@@ -75,3 +76,19 @@ var contactEmail = function(user) {
         return user.services.facebook.email;
     return null;
 };
+
+function adminUser(userId) {
+  var adminUser = Meteor.users.findOne({_id:userId,'profile.admin':1});
+  return (userId && adminUser && userId === adminUser._id);
+}
+ServerSettings.allow({
+insert: function(userId, setting){
+    return adminUser(userId);
+  },
+  update: function(userId, serversettings, fields, modifier){
+    return adminUser(userId);
+  },
+  remove: function (userId, docs){
+    return adminUser(userId);
+  }
+});

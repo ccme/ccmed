@@ -10,12 +10,134 @@
             You don't have a hostname set to receive email from.
         </div>
     </div>
-        <div class="panel panel-warning">
+    <div class="panel panel-warning">
         <div class="panel-heading">
             <h3 class="panel-title">Some other alert</h3>
         </div>
         <div class="panel-body">
             This is a warning.
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">ccmed server settings</h3>
+        </div>
+        <div class="panel-body">
+            <form action="/admin" method="POST">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-cloud"></span>
+                                </span>
+                                <input type="text" name="domain_name" value="{{domain_name}}" class="form-control" placeholder="Domain Name">
+                            </div>
+                        </p>
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <textarea class="form-control" placeholder="Domain names to accept email from, one hostname per line." name="hosts_allow" rows="5">{{hosts_allow}}</textarea>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" name="usercount" disabled value="{{usercount}} Registered Users" class="form-control" placeholder="Registered Users">
+                            </div>
+                        </p>
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" name="usercountonline" disabled value="{{usercountonline}} Users Online" class="form-control" placeholder="Users Online">
+                            </div>
+                        </p>
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-hdd"></span>
+                                </span>
+                                <input type="text" name="hdd" disabled value="43 GB free space" class="form-control" placeholder="Free Space">
+                            </div>
+                        </p>
+                        <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-hdd"></span>
+                                </span>
+                                <input type="text" name="hdd" disabled value="25 MB used for mailboxes" class="form-control" placeholder="Used Space">
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <p>
+                    <button type="submit" class="btn btn-primary btn-small">Save</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Users
+                <span class="badge">{{userscount}}</span>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Last Online</th>
+                            <th>Registered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each user}}
+                        <tr>
+                            <td>
+                                {{#if this.status.online}}
+                                <span class="label label-success">Online</span>
+                                {{/if}}
+                            </td>
+                            <td>{{this.username}}</td>
+                            <td>{{this.profile.name}}</td>
+                            <td>{{this.emails.0.address}}</td>
+                            <td>{{moment this.status.lastLogin}}</td>
+                            <td>{{moment this.createdAt}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="text-center">
+                <div class="text-center">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                            <a href="#todo" class="btn btn-default btn-small">Add New</a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="#todo" class="btn  btn-default btn-small">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

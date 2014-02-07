@@ -67,10 +67,46 @@ Meteor.users.allow({
         } else return false;
     }
 });
+
 Meteor.publish("userStatus", function() {
     return Meteor.users.find({
         "status.online": true
     }, {
         fields: {}
     });
+});
+
+Meteor.publish("ServerSettings", function() {
+    return ServerSettings.find();
+});
+
+Meteor.publish("Users", function() {
+    return Meteor.users.find();
+});
+
+Meteor.methods({
+  update_setting: function (type, name, value) {
+    check(type, String);
+    check(name, String);
+    check(value, String);
+
+    var obj = {};
+    obj[name] = value;
+
+    var result = ServerSettings.findOne({'type': type}, {'setting': obj });
+
+    console.log({'type': type}, {'setting': obj });
+
+    ServerSettings.update({
+     'type': type
+    }, {
+      'setting': obj
+    }, function(error, affectedDocs) {
+      if (error) {
+        throw new Meteor.Error(500, error.message);
+      } else {
+        return "Update Successful";
+      }
+    });
+  }
 });

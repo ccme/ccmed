@@ -16,6 +16,10 @@ Handlebars.registerHelper('firstrun', function() {
     }
 });
 
+Handlebars.registerHelper('moment', function(time) {
+    return moment(time).fromNow();
+});
+
 Handlebars.registerHelper('isadmin', function() {
     if (Meteor.user()) {
         try {

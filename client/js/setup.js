@@ -7,7 +7,7 @@ Write registration verification for email, password length, etc.
 
 Disable\Enable the continue button when the form isn't valid.
 
-Don't alert(''); the user - Add has-error, has-warning, has-success instead.
+Don't allow this form to be posted if there already is already >= 1 users.
 */
 
 Meteor.subscribe('directory');

@@ -23,7 +23,9 @@
                     <li {{active "login" currentPage}}>
                         <a href="/home">Please Login</a>
                     </li>
-
+                    <li {{active "about" currentPage}}>
+                        <a href="/about">About</a>
+                    </li>
                     {{else}}
 
                     <li {{active "home" currentPage}}>
@@ -36,12 +38,7 @@
                         <a href="/messages">Messages <span class="badge">{{inbox_count}}</span></a>
                     </li>
                     {{/if}}
-                    <li {{active "about" currentPage}}>
-                        <a href="/about">About</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    {{ loginButtons }}
+                     {{ loginButtons }}
                 </ul>
                 {{/if}}
             </div>
