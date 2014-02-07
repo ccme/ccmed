@@ -4,9 +4,9 @@ RCPT TO:   <test@ccme.com>
 DATA
 From: A tester <test@ccme.com>
 To:   <test@ccme.com>
-Date: date
+Date: Tue, 4 Feb 2014 23:26:10 -0500
 Subject: A test message from hostname
 
-Delete me, please
+This is a test.
 .
 QUIT
