@@ -1,0 +1,5 @@
+
+This is a message that should be both signed and encrypted.
+
+Sincerely,
+test@ccme.com

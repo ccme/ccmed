@@ -140,6 +140,7 @@ Document/Message Storage
   * Server using openssl: https://github.com/Obvious/ursa
   * Windows/Mac but complicated: http://kjur.github.io/jsrsasign/
   * Client and simpliler for signing: http://kjur.github.io/jsjws/  (but it wont read local key stores... i think)
+  * Nice ASN.1 decoder. http://lapo.it/asn1js/
 
 Collections
 -----------
