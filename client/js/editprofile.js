@@ -32,7 +32,6 @@ Template.userkeys.events = {
         // Now decrypt the crypted text with the private key.
         var dec = crypt_private.decrypt(enc);
 
-        console.log(dec);
         // Now a simple check to see if the round-trip worked.
         if (dec === text) {
             Meteor.users.update({
