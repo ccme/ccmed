@@ -61,8 +61,14 @@ var DecryptMsg = function(msg,privKey) {
 	mailparser.on("end", function(mail_object){
 	//    console.log("Details:", JSON.stringify(mail_object,null,3));
 
-		if (mail_object.text) 
-			console.log('Message:',mail_object.text);
+
+		if ((mail_object.attachments === undefined)||(mail_object.attachments[0].contentType!="application/pkcs7-mime")) {
+			if (mail_object.text) {  // this is not an encrypted message.
+				msg.body = mail_object.text;
+			}
+	    	fiber.run();
+			return;
+		}
 
 		var pem = mail_object.attachments[0].content;
 
@@ -82,7 +88,7 @@ var DecryptMsg = function(msg,privKey) {
 		var mparser = new MailParser();
 		mparser.on("end", function(msgbody) {
 			if (msgbody.text) {
-				console.log("Message:",msgbody.text);
+//				console.log("Message:",msgbody.text);
 				msg.body = msgbody.text;
 				msgbody.attachments.forEach(function (sig) {
 					if (sig.contentType==="application/pkcs7-signature") {
