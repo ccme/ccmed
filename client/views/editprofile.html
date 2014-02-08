@@ -1,5 +1,32 @@
 <template name="editprofile">
-    <hr />
+    <hr />{{#unless Meteor.user.private_key}}
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">No keys found</h3>
+        </div>
+        <div class="panel-body">
+            You will not be able to send or receive mail until you set up your keys. You can generate them on the bottom of this page.
+        </div>
+    </div>
+    {{/unless}} {{#unless Meteor.user.profile.name}}
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">No Full Name associated with this account</h3>
+        </div>
+        <div class="panel-body">
+            Please make sure you have filled out your profile information fully.
+        </div>
+    </div>
+    {{/unless}} {{#unless Meteor.user.username}}
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">No username associated with this account</h3>
+        </div>
+        <div class="panel-body">
+            Please make sure you have filled out your profile information fully.
+        </div>
+    </div>
+    {{/unless}}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Edit Profile</h3>
