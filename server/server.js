@@ -32,12 +32,13 @@ mailsocket = net.createServer( Meteor.bindEnvironment(function(connection) {
 		var msg = JSON.parse(complete_msg.substring(7,h));
 		msg.received = Date.now();
 		msg.mime = complete_msg.substring(h+1);
-
-        var privKey = getUserPrivate(msg.rcpt_to[0].user + '@' + msg.rcpt_to[0].host);
+		var mailFrom = msg.rcpt_to[0].user + '@' + msg.rcpt_to[0].host;
+        var privKey = getUserPrivate(mailFrom);
         if(privKey == ''){
             console.log('User or private key doesn\'t exist.');
             //We need to reject this message.
         }
+debugger;
 		DecryptMsg(msg,privKey);
 //		console.log('data:',msg); 
 		var docid = Messages.insert( msg );
@@ -131,7 +132,7 @@ function getUserPrivate(email){
     }
 }
 
-function getUserPrivate(email){
+function getUserPublic(email){
     try{
         var pubKey = Meteor.users.findOne({'emails.0.address': email}).public_key;
         return pubKey;
