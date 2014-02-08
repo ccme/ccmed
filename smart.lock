@@ -11,7 +11,6 @@
       "user-status": {},
       "router": {},
       "fast-render": {},
-      "cryptico": {},
       "jsencrypt": {}
     },
     "packages": {
@@ -59,11 +58,6 @@
         "git": "https://github.com/arunoda/meteor-fast-render.git",
         "tag": "v0.1.12",
         "commit": "b190f1592401f4084ce54b8f713b134e35a4e0db"
-      },
-      "cryptico": {
-        "git": "https://github.com/E3pO/meteor-cryptico.git",
-        "tag": "v0.2.4",
-        "commit": "aee69b21f315b8c9f148169c5c4c6cc9bd853ff6"
       },
       "jsencrypt": {
         "git": "https://github.com/wreiske/meteor-jsencrypt.git",
