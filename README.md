@@ -61,7 +61,7 @@ Client UI Features
     * special meta data, for example [CDA](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=258):  
       * Required: RecordTarget, Author, Custodian
       * Optional: DataEnterer, Informant, InformationRecipient, LegalAuthenticator, etc ...
-* Folder metaphore (using tagging) called foldertags.  They basically work like folders and tags.
+* Folder metaphor (using tagging) called foldertags.  They basically work like folders and tags.
   * foldertags are random hashes.  Hashes can be shared to enable sharing of folders.
   * foldertags can contain document that are just other foldertags thus providing a hierarchy.
 * [Responsive design](http://en.wikipedia.org/wiki/Responsive_web_design) for displaying for pocket, tablet, or desktop that is ADA compliant.
@@ -79,7 +79,7 @@ Client UI Features
       * if by value, normal SMTP S/MIME procedures are followed.
 * Email address creation (multi-user).
   * can register and create an email identity and make a private key.
-  * easy registration with ccme.com for forwarding a ccme handle to a local mail store.
+  * easy registration with ccme.com for forwarding a ccme handle to a local mail store.  (see Certificate Creation)
   * can mark address to be publicly shared via LDAP.
   * can register server with ccme.com to be discoverable in other directories.
   * can upload an image to be displayed with cert lookup.
@@ -127,7 +127,45 @@ Server Features
 * Port: DNS server
 * Port: IMAP  (future)
 
-Document/Message Storage
+
+Certificate Creation
+--------------------
+
+* Private/Public Keys are generated in the browser if one is needed.
+* If the user wants to use their own certificate, they can upload it, but:
+  * If the cert is not "trusted" (defined below in Certificate Backgrounder).
+    * The server will extract the public key and create a new certificate for the public key, signed by the server.
+    * The server will only issue "Rudimentary" or "Level 1" certificates that assures that the email address is bound to the certificate.
+  * If "trusted"
+    * It will be stored as is, and served up for certificate discovery.
+
+Certificate Policy Backgrounder
+-------------------------------
+* Certificate Policies: http://www.ietf.org/rfc/rfc3647.txt
+  * http://en.wikipedia.org/wiki/Extended_Validation_Certificate#Extended_Validation_certificate_identification
+
+* "Level of Assurance" has two scales:
+  * X.509 FBCA Certificate Policy: There are twelve policies specified at six different levels of assurance in this Certificate Policy, which are defined in subsequent sections. Each level of assurance has an Object Identifier (OID), to be asserted in certificates issued by the FBCA.  { 2 16 840 1 101 3 2 1 } { csor-certpolicy 3 } Key family of levels are:
+    * Rudimentary: { fbca-policies 1 }
+    * Basic: { fbca-policies 2 }
+    * Medium: { fbca-policies 3 }, { fbca-policies 12 }, { fbca-policies 14 }, { fbca-policies 15 }, { fbca-policies 37}, { fbca-policies 38}
+    * High: { fbca-policies 4 }
+    * pivi: { fbca-policies 18 }, { fbca-policies 19 }, { fbca-policies 20 }
+  * NIST 800-63-1:
+    * Level 1: Successful authentication requires that the Claimant prove through a secure authentication protocol that he or she possesses and controls the token.
+    * Level 2: Provides single factor remote network authentication. At Level 2, identity proofing requirements are introduced, requiring presentation of identifying materials or information.
+    * Level 3: Provides multi-factor remote network authentication. At least two authentication factors are required. At this level, identity proofing procedures require verification of identifying materials and information.
+    Level 4: intended to provide the highest practical remote network authentication assurance. Level 4 authentication is based on proof of possession of a key through a cryptographic protocol. At this level, in-person identity proofing is required.
+
+* 6.1.7 Key Usage Purposes (as per X.509 v3 key usage field)
+  * Rudimentary, Basic, and Medium Assurance Level certificates may include a single key for use with encryption and signature in support of legacy applications.
+* [NIST 800-63-1](http://csrc.nist.gov/publications/nistpubs/800-63-1/SP-800-63-1.pdf)
+  * It is important to note NIST announced the closed a public comment Draft Special Publication 800-63-2 on March 4, 2013. This draft is a limited update of Special Publication 800-63-1 and substantive changes are made only in section 5. Registration and Issuance Processes. The substantive changes in the revised draft are intended to facilitate the use of professional credentials in the identity proofing process, and to reduce the need to use postal mail to an address of record to issue credentials for level 3 remote registration. Other changes to section 5 are minor explanations and clarifications. New or revised text is highlighted in the review draft. Other sections of NIST Special Publication 800-63-1 have not been changed in this draft. http://blog.aniljohn.com/2013/02/nist-sp-800-63-2-public-comment.html
+  * [NIST 800-63-2](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-2.pdf)
+* [X.509 Certificate Policy For The Federal Bridge Certification Authority (FBCA)](http://www.idmanagement.gov/sites/default/files/documents/FBCA_CP_RFC3647.pdf)
+
+
+Notes
 ------------------------
 * http://docs.mongodb.org/manual/core/gridfs/
 * https://github.com/CollectionFS/Meteor-CollectionFS
@@ -141,6 +179,11 @@ Document/Message Storage
   * Windows/Mac but complicated: http://kjur.github.io/jsrsasign/
   * Client and simpliler for signing: http://kjur.github.io/jsjws/  (but it wont read local key stores... i think)
   * Nice ASN.1 decoder. http://lapo.it/asn1js/
+* Other Email Readers and S/MIME support:
+  * [How to secure your e-mail under Mac OS X and iOS 5 with S/MIME](http://arstechnica.com/apple/2011/10/secure-your-e-mail-under-mac-os-x-and-ios-5-with-smime/)
+  * [Getting an SMIME certificate](http://kb.mozillazine.org/Getting_an_SMIME_certificate)
+  * [Outlook](http://office.microsoft.com/en-us/outlook-help/get-a-digital-id-HP001230537.aspx)
+
 
 Collections
 -----------
