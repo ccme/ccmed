@@ -1,15 +1,23 @@
-Meteor.subscribe('ServerSettings');
+Meteor.subscribe('Server');
 Meteor.subscribe('Users');
 
 Template.adminstart.helpers({
     domain_name: function() {
-        return 'mie.io';
+        try{
+        return 'TODO: mie.io (' + Server.findOne().os.network.hostname + ')';
+    }
+    catch(e){
+        return 'Please wait...';
+    }
     },
     hosts_allow: function() {
-        return 'mie.io\nmieweb.com\ndomain.co';
+        return 'TODO: mie.io\nmieweb.com\ndomain.co';
     },
     user: function() {
         return Meteor.users.find();
+    },
+    setting: function(){
+        return Server.findOne();
     }
 });
 

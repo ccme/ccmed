@@ -45,7 +45,7 @@
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-envelope"></span>
                             </span>
-                            <input type="email" disabled id="created" value="{{Meteor.user.emails.0.address}}" class="form-control">
+                            <input type="email" disabled id="email" value="{{Meteor.user.emails.0.address}}" class="form-control">
                         </div>
                     </p>
                     <form action="/" method="POST">
@@ -74,37 +74,42 @@
 
         </div>
     </div>
-    {{>userkeys}}
+    {{>addemail}}{{>email_list}}
 </template>
-
-<template name="userkeys">
-    <hr />
+<template name="addemail">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Your Keys</h3>
+            <h3 class="panel-title">Add Email Address</h3>
         </div>
         <div class="panel-body">
-            <p>
-                You can generate a private\public key pair using <a data-target="#openssl" data-toggle="modal">openssl</a>, or you can generate a 2048 key in your browser below.
-            </p>
-            <form action="/" method="POST">
-                <span id="private_key_wrap" style="display:none;">
-                    <p>
-                        <textarea class="form-control" placeholder="RSA Private Key" name="private_key" rows="5">{{Meteor.user.private_key}}</textarea>
-                    </p>
-                    <p>
-                        <textarea class="form-control" placeholder="RSA Public Key" name="public_key" rows="5">{{Meteor.user.public_key}}</textarea>
-                    </p>
-                </span>
+            <p>You can create as many email aliases as you wish.</p>
+            <form method="POST">
                 <p>
-                    <button type="button" id="show_private_key" class="btn btn-primary btn-small">Show Keys</button>&nbsp;
-                    <button type="button" id="hide_private_key" style="display:none;" class="btn btn-primary btn-small">Hide Keys</button>&nbsp;
-                    <button style="display:none;" type="button" id="generate_private_key" name="generate" class="btn btn-primary btn-small">Generate</button>&nbsp;
-                    <button style="display:none;" id="submit_private_key" type="submit" class="btn btn-primary btn-small">Save</button>
+                    <div class="input-group input-group-small">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                        <input type="email" name="email" value="" required placeholder="Email address to add" class="form-control">
+                    </div>
+                </p>
+                <p>
+                    <textarea class="form-control" required placeholder="RSA Private Key" name="private_key_email" rows="5"></textarea>
+                </p>
+                <p>
+                    <textarea class="form-control" required placeholder="RSA Public Key" name="public_key_email" rows="5"></textarea>
+                </p>
+                <p>
+                    <button id="generate" type="button" class="btn btn-primary btn-small">Generate</button>&nbsp;
+                    <button id="add_email" disabled type="submit" class="btn btn-primary btn-small">Add</button>
                 </p>
             </form>
         </div>
     </div>
+</template>
+<template name="email_list">
+    <h3>Email Addresses</h3>
+    <hr />{{#each email}} {{>email_entry}} {{/each}}
+
     <div class="modal" id="openssl">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -128,6 +133,35 @@
                     <a href="#" data-dismiss="modal" class="btn">Close</a>
                 </div>
             </div>
+        </div>
+    </div>
+</template>
+<template name="email_entry">
+    <div class="panel {{#if this.private_key}}panel-default{{else}}panel-warning{{/if}}">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{#unless this.private_key}}Attention needed: No Keys for {{/unless}}{{this.address}}</h3>
+        </div>
+        <div class="panel-body">
+            <form method="POST">
+                <span name="keys_wrap" style="display:none;">
+                    <p>
+                        You can generate a private\public key pair using <a data-target="#openssl" data-toggle="modal">openssl</a>, or you can generate a 2048 key in your browser below.
+                    </p>
+                    <p>
+                        <textarea class="form-control" placeholder="RSA Private Key for {{this.address}}" name="private_key" rows="5">{{this.private_key}}</textarea>
+                    </p>
+                    <p>
+                        <textarea class="form-control" placeholder="RSA Public Key for {{this.address}}" name="public_key" rows="5">{{this.public_key}}</textarea>
+                    </p>
+                </span>
+                <p>
+                    <input type="hidden" name="address" value="{{this.address}}" />
+                    <button type="button" name="show_keys" class="btn btn-primary btn-small">Show Keys</button>&nbsp;
+                    <button type="button" name="hide_keys" style="display:none;" class="btn btn-primary btn-small">Hide Keys</button>&nbsp;
+                    <button style="display:none;" type="button" name="generate_keys" name="generate" class="btn btn-primary btn-small">Generate</button>&nbsp;
+                    <button style="display:none;" name="submit_keys" type="submit" class="btn btn-primary btn-small">Save</button>
+                </p>
+            </form>
         </div>
     </div>
 </template>

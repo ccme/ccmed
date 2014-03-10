@@ -67,7 +67,7 @@
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-hdd"></span>
                                 </span>
-                                <input type="text" name="hdd" disabled value="43 GB free space" class="form-control" placeholder="Free Space">
+                                <input type="text" name="hdd" disabled value="TODO: 43 GB free space" class="form-control" placeholder="Free Space">
                             </div>
                         </p>
                         <p>
@@ -75,7 +75,24 @@
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-hdd"></span>
                                 </span>
-                                <input type="text" name="hdd" disabled value="25 MB used for mailboxes" class="form-control" placeholder="Used Space">
+                                <input type="text" name="hdd" disabled value="TODO: 25 MB used for mailboxes" class="form-control" placeholder="Used Space">
+                            </div>
+                        </p>
+                                                <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-hdd"></span>
+                                </span>
+                                <input type="text" name="hdd" disabled value="Server started {{moment setting.os.system_info.started}}" class="form-control" placeholder="Uptime">
+                            </div>
+                        </p>       
+                         <p>
+                            <div class="input-group input-group-small">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-stats"></span>
+                                </span>
+                                <textarea disabled class="form-control" placeholder="Cpu Statistics" name="stats" rows="5">CPU Count: {{setting.os.cpu.count}}&#10;Free: {{setting.os.cpu.free}}&#10;System Usage: {{setting.os.cpu.sys}}&#10;User Usage: {{setting.os.cpu.user}}&#10;Free Memory: {{setting.os.memory.free}} / {{setting.os.memory.total}}
+                                </textarea>
                             </div>
                         </p>
                     </div>

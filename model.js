@@ -1,5 +1,5 @@
 Messages = new Meteor.Collection("Messages");
-ServerSettings = new Meteor.Collection("ServerSettings");
+Server = new Meteor.Collection("Server");
 
 Messages.allow({
     insert: function(userId, message) {
@@ -81,11 +81,11 @@ function adminUser(userId) {
   var adminUser = Meteor.users.findOne({_id:userId,'profile.admin':1});
   return (userId && adminUser && userId === adminUser._id);
 }
-ServerSettings.allow({
+Server.allow({
 insert: function(userId, setting){
     return adminUser(userId);
   },
-  update: function(userId, serversettings, fields, modifier){
+  update: function(userId, Server, fields, modifier){
     return adminUser(userId);
   },
   remove: function (userId, docs){
