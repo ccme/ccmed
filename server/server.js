@@ -7,6 +7,7 @@ process.env.HARAKA = process.cwd() + '/assets/app';
 var Haraka = Meteor.require('Haraka');
 var MailParser = Meteor.require("mailparser").MailParser;
 var forge = Meteor.require('node-forge');
+var df = Meteor.require('node-diskfree');
 
 // This is a simple server that get mail and stores it in the Meteor DB
 var fs = Meteor.require('fs');
@@ -256,6 +257,8 @@ Meteor.methods({
 var started = Date.now();
 
 Meteor.startup(function() {
+
+    Server.remove({});
     Server.insert({
         'os': {
             'cpu': {
@@ -278,6 +281,9 @@ Meteor.startup(function() {
                 'release': os.release(),
                 'arch': os.arch()
             }
+        },
+        'hardware': {
+            'disks': {}
         }
     });
 });
@@ -297,6 +303,7 @@ system_stats_loop = Meteor.setInterval(function() {
     var free = 0;
     var sys = 0;
     var user = 0;
+    var disks;
     for (var i = 0; i < cpu.length; i++) {
 
         counter++;
@@ -307,8 +314,45 @@ system_stats_loop = Meteor.setInterval(function() {
         user += 100 * (parseFloat(cpu[i].times.user) / total);
     };
 
+    /* retrieve disks list */
+    df.drives(
+        Meteor.bindEnvironment(function(err, drives) {
+            if (err) {
+                return console.log(err);
+            }
+            /* retrieve space information for each drives */
+            df.drivesDetail(
+                drives,
+                Meteor.bindEnvironment(function(err, data) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    Server.update({}, {
+                        $set: {
+                            'hardware': {
+                                'disks': data.slice(0)
+                            }
+                        }
+                    });
+                })
+            );
+            /* or retrieve space information for on drive */
+            /*
+            df.driveDetail(
+                drives[0],
+                function(err, data) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log(data);
+                }
+            );
+            */
+        })
+    );
     //console.log('%s CPUS - Free %s + User: %s + System: %s', i, (free / counter).toFixed(2), (user / counter).toFixed(2), (sys / counter).toFixed(2));
     debugger;
+
     Server.update({}, {
         $set: {
             'os': {
@@ -331,7 +375,8 @@ system_stats_loop = Meteor.setInterval(function() {
                     'uptime': os.uptime(),
                     'release': os.release(),
                     'arch': os.arch()
-                }
+                },
+                'disks': disks
             }
         }
     });

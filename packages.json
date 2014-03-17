@@ -1,5 +1,6 @@
 {
   "Haraka": "2.2.8",
   "mailparser": "0.4.1",
-  "node-forge": "0.2.29"
+  "node-forge": "0.2.29",
+  "node-diskfree": "0.1.0"
 }

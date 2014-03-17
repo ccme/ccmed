@@ -62,12 +62,14 @@
                                 <input type="text" name="usercountonline" disabled value="{{usercountonline}} Users Online" class="form-control" placeholder="Users Online">
                             </div>
                         </p>
+
                         <p>
                             <div class="input-group input-group-small">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-hdd"></span>
                                 </span>
-                                <input type="text" name="hdd" disabled value="TODO: 43 GB free space" class="form-control" placeholder="Free Space">
+                                {{#each setting.hardware.disks}}
+                                <input type="text" name="hdd" disabled value="{{this.drive}} {{this.available}} Free / {{this.total}} ({{this.used}} Used)" class="form-control" placeholder="Loading...">{{/each}}
                             </div>
                         </p>
                         <p>
@@ -78,15 +80,15 @@
                                 <input type="text" name="hdd" disabled value="TODO: 25 MB used for mailboxes" class="form-control" placeholder="Used Space">
                             </div>
                         </p>
-                                                <p>
+                        <p>
                             <div class="input-group input-group-small">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-hdd"></span>
                                 </span>
                                 <input type="text" name="hdd" disabled value="Server started {{moment setting.os.system_info.started}}" class="form-control" placeholder="Uptime">
                             </div>
-                        </p>       
-                         <p>
+                        </p>
+                        <p>
                             <div class="input-group input-group-small">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-stats"></span>
