@@ -1,44 +1,71 @@
 <template name="messages">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Email Inbox
-                <span class="badge">{{inbox_count}}</span>
-            </h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>To</th>
-                            <th>From</th>
-                            <th>Subject</th>
-                            <th>Time</th>
-                            <th>Folder</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each message}}
-                        <tr data-toggle="message_{{this._id}}" onmousedown="$('#message_{{this._id}}').modal({show:true});">
-                            <td>{{this.headers.to}}</td>
-                            <td>{{this.headers.from}}</td>
-                            <td>{{this.headers.subject}}</td>
-                            <td>{{moment this.headers.date.[0]}}</td>
-                            <td>
-                                <span class="label label-warning">Folder</span>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6 col-md-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-close"></span>&nbsp;Folders
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                <span class="badge">{{inbox_count}}</span>
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                &nbsp;Inbox
+                            </a>
+                            <a href="#" class="list-group-item">Sent</a>
+                            <a href="#" class="list-group-item">Trash</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="panel-footer">
-            <div class="text-center">
-                0 unread messages
+            <div class="col-xs-12 col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-envelope"></span>&nbsp;Email Inbox
+                            <span class="badge">{{inbox_count}}</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>To</th>
+                                        <th>From</th>
+                                        <th>Subject</th>
+                                        <th>Time</th>
+                                        <th>Folder</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each message}}
+                                    <tr data-toggle="message_{{this._id}}" onmousedown="$('#message_{{this._id}}').modal({show:true});">
+                                        <td>{{this.headers.to}}</td>
+                                        <td>{{this.headers.from}}</td>
+                                        <td>{{this.headers.subject}}</td>
+                                        <td>{{moment this.headers.date.[0]}}</td>
+                                        <td>
+                                            <span class="label label-warning">Folder</span>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="text-center">
+                            0 unread messages
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 
     {{#each message}}
     <div class="modal" id="message_{{this._id}}">
